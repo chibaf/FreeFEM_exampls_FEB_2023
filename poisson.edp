@@ -1,0 +1,85 @@
+//  Location:
+//
+//    http://people.sc.fsu.edu/~jburkardt/examples/chrispell_freefem++/poisson.edp
+//
+//  Discussion:
+//
+//    Poisson equation in a square.
+//
+//      - uxx - uyy = f
+//
+//  Licensing:
+//
+//    This code is distributed under the GNU LGPL license.
+//
+//  Modified:
+//
+//    25 January 2015
+//
+//  Reference:
+//
+//    John Chrispell, Jason Howell,
+//    Finite Element Approximation of Partial Differential Equations
+//    Using FreeFem++, or, How I Learned to Stop Worrying and Love
+//    Numerical Analysis.
+//
+//    Frederic Hecht,
+//    New development in FreeFem++,
+//    Journal of Numerical Mathematics,
+//    Volume 20, Number 3-4, 2012, pages 251-265.
+//
+
+//
+//  Define Th, the triangulation of the square.
+//
+int n = 10;
+
+mesh Th = square ( n, n );
+//
+//  Define Vh, the finite element space for 
+//    2D velocity vector (piecewise linear "bubble") and 
+//    pressure (piecewise linear).
+//
+fespace Vh ( Th, P1 );
+//
+//  Define uh, the trial function.
+//
+Vh uh;
+//
+//  Define vh, test function.
+//
+Vh vh;
+//
+//  Define F(X,Y), the right hand side function.
+//
+func f = 
+  +      sin(5*pi*x*(1-x)) *      sin(4*pi*y*(1-y)) * pow(5*pi*(1-x)-5*pi*x,2)
+  + 10 * cos(5*pi*x*(1-x)) * pi * sin(4*pi*y*(1-y))
+  +      sin(5*pi*x*(1-x)) *      sin(4*pi*y*(1-y)) * pow(4*pi*(1-y)-4*pi*y,2) 
+  + 8  * sin(5*pi*x*(1-x)) * pi * cos(4*pi*y*(1-y));
+//
+//  Define G(X,Y), for the boundary condition.
+//
+func g = 0.0;
+//
+//  Define the problem.
+//
+problem poisson ( uh, vh ) 
+  = int2d ( Th ) 
+  ( 
+    dx(uh) * dx(vh) 
+  + dy(uh) * dy(vh)
+  )
+  - int2d ( Th )
+  (
+    f * vh 
+  )
+  + on ( 1, 2, 3, 4, uh = g );
+//
+//  Solve the problem.
+//
+poisson;
+//
+//  Draw the velocity vectors, using 1 color for the vectors.
+//
+plot ( uh, fill = 1, value = 1, ps = "poisson.ps" );
