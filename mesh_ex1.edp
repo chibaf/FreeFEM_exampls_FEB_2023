@@ -1,0 +1,22 @@
+int line0=0;
+int line1=1;
+int line2=2;
+int line3=3;
+int line4=4;
+int arc1=1;
+int arc2=2;
+int circle0=0;
+int nn=10;
+
+border l0(t=-1.,1.){x=0.;y=t;label=line0;};
+border l1(t=10.,2.5){x=t;y=1;label=line1;};
+border a1(t=0.,pi){x=2.5*cos(t);y=2.5*sin(t)+1.;label=arc1;};
+border l2(t=-2.5,-10.){x=t;y=1.;label=line2;};
+border l3(t=1.,-1.){x=-10.;y=t;label=line3;};
+border l4(t=-10.,-2.5){x=t;y=-1;label=line4;};
+border a2(t=pi,0.){x=2.5*cos(t);y=-2.5*sin(t)-1.;label=arc2;};
+border c0(t=pi,-pi){x=1.5*cos(t);y=1.5*sin(t);label=circle0;};
+
+mesh Th=buildmesh(l0(nn)+l1(nn)+a1(nn)+l2(nn)+l4(nn)+a2(nn)+c0(nn));
+
+plot(Th);
