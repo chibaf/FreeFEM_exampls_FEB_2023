@@ -1,6 +1,3 @@
-
-// mesh Th=buildmesh(l0(nn)+l1(nn)+a1(-nn)+l2(nn)+l4(nn)+l5(nn)+a2(-nn));//+c0(nn));
-
 int line0=0;
 int line1=1;
 int line2=2;
