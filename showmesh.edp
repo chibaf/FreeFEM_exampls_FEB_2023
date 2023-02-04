@@ -1,0 +1,31 @@
+//Parameters
+real uMax = 10.;
+
+real Rho = 1.;
+real Mu = 1.;
+
+func fx = 0.;
+func fy = 0.;
+
+real T = 1.;
+real dt = 1.e-2;
+
+//Mesh
+int nn = 10;	//Mesh quality
+real L = 5.;	//Pipe length
+real D = 1.;	//Pipe height
+int Wall = 1;	//Pipe wall label
+int Inlet = 2;	//Pipe inlet label
+int Outlet = 3;	//Pipe outlet label
+
+border b1(t=0., 1.){x=L*t; y=0.; label=Wall;};
+border b2(t=0., 1.){x=L; y=D*t; label=Outlet;};
+border b3(t=0., 1.){x=L-L*t; y=D; label=Wall;};
+border b4(t=0., 1.){x=0.; y=D-D*t; label=Inlet;};
+
+int nnL = max(2., L*nn);
+int nnD = max(2., D*nn);
+
+mesh Th = buildmesh(b1(nnL) + b2(nnD) + b3(nnL) + b4(nnD));
+
+plot(Th);
