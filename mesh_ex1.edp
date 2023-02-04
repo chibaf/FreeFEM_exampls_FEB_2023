@@ -20,7 +20,3 @@ border l5(t=2.5,10.){x=t;y=-1;label=line5;};
 border c0(t=0,2.*pi){x=1.5*cos(t);y=1.5*sin(t);label=circle0;};
 
 plot(l0(nn),l1(nn),a1(nn),l2(nn),l3(nn),l4(nn),a2(nn),l5(nn),c0(nn));
-
-// mesh Th=buildmesh(l0(nn)+l1(nn)+a1(-nn)+l2(nn)+l4(nn)+l5(nn)+a2(-nn));//+c0(nn));
-
-//plot(Th);
