@@ -62,7 +62,8 @@ problem NS ([ux, uy, p],[vx, vy, q])
 		  (Rho/dt) * [convect([upx, upy], -dt, upx), convect([upx, upy], -dt, upy)]' * [vx, vy]
 		+ [fx, fy]' * [vx, vy]
 	)
-	+ on(Inlet, ux=uIn, uy=0.)
+//	+ on(Inlet, ux=uIn, uy=0.)
+	+ on(Inlet, ux=-10., uy=0.)
 	+ on(Wall, ux=0., uy=0.)
 	;
 
