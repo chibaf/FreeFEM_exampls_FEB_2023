@@ -11,3 +11,5 @@ FreeFEM is a partial differential equation solver with Finite Element Method (FE
 # ref
 
 FreeFEM.org https://community.freefem.org
+
+FreeFEM - Navier Stokes https://modules.freefem.org/modules/navier-stokes/
